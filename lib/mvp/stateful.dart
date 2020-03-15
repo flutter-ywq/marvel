@@ -15,12 +15,6 @@ abstract class Stateful<T extends StatefulWidget, P extends Presenter> extends S
 
   P presenter;
 
-  P initPresenter();
-
-  viewDidLoad(callback);
-
-  updateState(tag, params);
-
   void showMsg(
     String msg, {
     String title,
@@ -63,15 +57,25 @@ abstract class Stateful<T extends StatefulWidget, P extends Presenter> extends S
   @override
   void initState() {
     super.initState();
+    presenter = initPresenter();
+    prepare();
     if (bindingObserver) {
       logFormat('bind WidgetsBindingObserver');
       WidgetsBinding.instance.addObserver(this);
     }
-    presenter = initPresenter();
+
     WidgetsBinding.instance.addPostFrameCallback((callback) {
       viewDidLoad(callback);
     });
   }
+
+  void prepare() {}
+
+  P initPresenter();
+
+  viewDidLoad(callback);
+
+  updateState(tag, params) {}
 
   @override
   void dispose() {
