@@ -14,6 +14,7 @@ class MessageDialog {
   String positiveText;
   Function positivePressEvent;
   Function negativePressEvent;
+  Widget content;
 
   MessageDialog._({
     this.title = '',
@@ -22,6 +23,7 @@ class MessageDialog {
     this.negativeText = '',
     this.positivePressEvent,
     this.negativePressEvent,
+    this.content,
   });
 
   static void show({
@@ -33,6 +35,7 @@ class MessageDialog {
     bool barrierDismissible = false,
     Function positivePressEvent,
     Function negativePressEvent,
+    Widget content,
   }) {
     showDialog<bool>(
       context: context,
@@ -45,29 +48,33 @@ class MessageDialog {
           negativeText: negativeText,
           positivePressEvent: positivePressEvent,
           negativePressEvent: negativePressEvent,
+          content: content,
         )._show(context);
       },
     );
   }
 
   Widget _show(BuildContext context) {
-    return CupertinoAlertDialog(
-      title: title == null
-          ? null
-          : Container(
-              margin: EdgeInsets.only(bottom: 10, top: 8),
-              child: Text(title, style: TextStyle(fontSize: 18.0)),
-            ),
-      content: message == null
+    if (content == null) {
+      content = message == null
           ? null
           : Container(
               margin: EdgeInsets.only(top: 15, bottom: 15),
               child: Text(message,
                   style: TextStyle(
-                    fontSize: 17.0,
+                    fontSize: 15.0,
                     fontWeight: FontWeight.bold,
                   )),
+            );
+    }
+    return CupertinoAlertDialog(
+      title: title == null
+          ? null
+          : Container(
+              margin: EdgeInsets.only(bottom: 10, top: 8),
+              child: Text(title, style: TextStyle(fontSize: 17.0)),
             ),
+      content: content,
       actions: _actions(
         context,
         positiveText,
