@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 ///
 /// @date 2019-12-11
 mixin View {
-  void showMsg(
+  Future<T> showMsg<T>(
     String msg, {
     String title,
     String positiveText = '确定',

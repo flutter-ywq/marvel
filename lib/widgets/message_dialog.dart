@@ -26,7 +26,7 @@ class MessageDialog {
     this.content,
   });
 
-  static void show({
+  static Future<T> show<T>({
     @required BuildContext context,
     String title,
     String message,
@@ -37,7 +37,7 @@ class MessageDialog {
     Function negativePressEvent,
     Widget content,
   }) {
-    showDialog<bool>(
+    return showDialog<T>(
       context: context,
       barrierDismissible: barrierDismissible,
       builder: (context) {
@@ -49,33 +49,33 @@ class MessageDialog {
           positivePressEvent: positivePressEvent,
           negativePressEvent: negativePressEvent,
           content: content,
-        )._show(context);
+        )._show<T>(context);
       },
     );
   }
 
-  Widget _show(BuildContext context) {
+  Widget _show<T>(BuildContext context) {
     if (content == null) {
       content = message == null
           ? null
           : Container(
-              margin: EdgeInsets.only(top: 15, bottom: 15),
-              child: Text(message,
-                  style: TextStyle(
-                    fontSize: 15.0,
-                    fontWeight: FontWeight.bold,
-                  )),
-            );
+        margin: EdgeInsets.only(top: 15, bottom: 15),
+        child: Text(message,
+            style: TextStyle(
+              fontSize: 15.0,
+              fontWeight: FontWeight.bold,
+            )),
+      );
     }
     return CupertinoAlertDialog(
       title: title == null
           ? null
           : Container(
-              margin: EdgeInsets.only(bottom: 10, top: 8),
-              child: Text(title, style: TextStyle(fontSize: 17.0)),
-            ),
+        margin: EdgeInsets.only(bottom: 10, top: 8),
+        child: Text(title, style: TextStyle(fontSize: 17.0)),
+      ),
       content: content,
-      actions: _actions(
+      actions: _actions<T>(
         context,
         positiveText,
         negativeText,
@@ -85,13 +85,13 @@ class MessageDialog {
     );
   }
 
-  List<Widget> _actions(
-    BuildContext context,
-    String positiveText,
-    String negativeText,
-    Function positivePressEvent,
-    Function negativePressEvent,
-  ) {
+  List<Widget> _actions<T>(
+      BuildContext context,
+      String positiveText,
+      String negativeText,
+      Function positivePressEvent,
+      Function negativePressEvent,
+      ) {
     List<Widget> actions = <Widget>[
       CupertinoDialogAction(
         child: Text(
@@ -102,10 +102,11 @@ class MessageDialog {
           ),
         ),
         onPressed: () {
-          Navigator.of(context).pop();
+          T result;
           if (positivePressEvent != null) {
-            positivePressEvent();
+            result = positivePressEvent();
           }
+          Navigator.of(context).pop(result);
         },
       ),
     ];
@@ -122,10 +123,11 @@ class MessageDialog {
             ),
           ),
           onPressed: () {
-            Navigator.of(context).pop();
+            T result;
             if (negativePressEvent != null) {
-              negativePressEvent();
+              result = negativePressEvent();
             }
+            Navigator.of(context).pop(result);
           },
         ),
       );

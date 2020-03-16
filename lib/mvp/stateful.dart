@@ -15,7 +15,7 @@ abstract class Stateful<T extends StatefulWidget, P extends Presenter> extends S
 
   P presenter;
 
-  void showMsg(
+  Future<T> showMsg<T>(
     String msg, {
     String title,
     String positiveText = '确定',
@@ -24,7 +24,7 @@ abstract class Stateful<T extends StatefulWidget, P extends Presenter> extends S
     Function negativePressEvent,
     bool barrierDismissible = false,
   }) {
-    prefix0.showMsg(context, msg,
+    return prefix0.showMsg<T>(context, msg,
         title: title,
         positiveText: positiveText,
         negativeText: negativeText,

@@ -45,7 +45,7 @@ void toast(
       border: border);
 }
 
-void showMsg(
+Future<T> showMsg<T>(
   BuildContext context,
   String msg, {
   String title,
@@ -56,7 +56,7 @@ void showMsg(
   bool barrierDismissible = false,
 }) {
   msg = msg ?? '';
-  MessageDialog.show(
+  return MessageDialog.show<T>(
     context: context,
     title: title,
     message: msg,
