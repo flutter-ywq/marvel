@@ -35,4 +35,11 @@ class EncryptUtils {
     List<int> imageBytes = await file.readAsBytes();
     return base64Encode(imageBytes);
   }
+
+  /// 通过图片路径将图片转换成base64字符串
+  static String image2Base64Sync(String path) {
+    File file = new File(path);
+    List<int> imageBytes = file.readAsBytesSync();
+    return base64Encode(imageBytes);
+  }
 }
