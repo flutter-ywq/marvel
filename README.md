@@ -2,6 +2,15 @@
 
 flutter mvp project framework
 
+## 使用
+
+``` dart
+
+  marvel:
+    git: https://github.com/flutter-ywq/marvel.git
+
+```
+
 ## Packages
 
 ### mvp - MVP结构相关
