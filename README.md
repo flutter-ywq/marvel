@@ -22,6 +22,6 @@ flutter mvp project framework
 - message_dialog - 消息对话框，提供positive和negative选项和事件
 
 ### common - 公共内容
-- marvel_cupertino_localizations - cupertino（库比蒂诺,苹果电脑的全球总公司所在地，位于美国旧金山,简单理解: iOS效果）所需要的自定义设置，当你需要用到Cupertino相关效果时，需要在main里设置
+- marvel_cupertino_localizations - cupertino（库比蒂诺,苹果电脑的全球总公司所在地，位于美国旧金山，简单理解: iOS效果）所需要的自定义设置，当你需要用到Cupertino相关效果时，需要在main里设置
 - page - 针对page页面层做的一些常用方法的封装，他们是顶级方法，也可以在其他地方使用
 - screen - 屏幕尺寸相关的一些方法
