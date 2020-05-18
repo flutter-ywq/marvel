@@ -34,4 +34,6 @@ mixin View {
   Future launchAndCloseSelf(Widget widget);
 
   BuildContext getContext();
+
+  bool finish();
 }

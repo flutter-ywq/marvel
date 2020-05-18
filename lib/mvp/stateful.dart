@@ -102,6 +102,12 @@ abstract class Stateful<T extends StatefulWidget, P extends Presenter> extends S
   }
 
   @override
+  bool finish() {
+    prefix0.finish(context);
+    return null;
+  }
+
+  @override
   BuildContext getContext() => this.context;
 
   @override
