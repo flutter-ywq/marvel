@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:marvel/mvp/stateful_page.dart';
 import 'package:marvel/widgets/message_dialog.dart';
 import 'package:toast/toast.dart';
 
@@ -7,14 +8,23 @@ import 'package:toast/toast.dart';
 /// @author 燕文强
 ///
 /// @date 2019-12-13
-Future launch(BuildContext context, Widget widget) {
-  return Navigator.push(context, MaterialPageRoute(builder: (context) {
-    return Scaffold(body: widget);
-  }));
+Future launch(BuildContext context, Widget widget, {bool stack = false}) {
+  return Navigator.push(context, _pageRoute(widget, stack));
 }
 
-Future launchAndCloseSelf(BuildContext context, Widget widget) {
-  return Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => Scaffold(body: widget)), (_) => false);
+Future launchAndCloseSelf(BuildContext context, Widget widget, {bool stack = false}) {
+  return Navigator.pushAndRemoveUntil(context, _pageRoute(widget, stack), (_) => false);
+}
+
+bool finish(BuildContext context) {
+  StatefulPage.routes.removeLast();
+  return Navigator.pop(context);
+}
+
+Route _pageRoute(Widget widget, bool stack) {
+  MaterialPageRoute pageRoute = MaterialPageRoute(builder: (context) => Scaffold(body: widget));
+  if (stack) StatefulPage.routes.add(pageRoute);
+  return pageRoute;
 }
 
 showSnackBar(BuildContext context, String text) {

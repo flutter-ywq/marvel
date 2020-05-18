@@ -5,4 +5,6 @@ import 'package:flutter/widgets.dart';
 /// @author 燕文强
 ///
 /// @date 2019-12-11
-abstract class StatefulPage extends StatefulWidget {}
+abstract class StatefulPage extends StatefulWidget {
+  static List<Route> routes = List<Route>();
+}
