@@ -40,14 +40,14 @@ void toast(
   BuildContext context,
   String msg, {
   int gravity = 1,
-  int duration = 1,
+  int duration = 2,
   Color backgroundColor = const Color(0xAA000000),
   Color textColor = Colors.white,
   double backgroundRadius = 20,
   Border border,
 }) {
   Toast.show(msg, context,
-      duration: 2,
+      duration: duration,
       gravity: gravity,
       backgroundColor: backgroundColor,
       textColor: textColor,

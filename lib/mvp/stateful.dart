@@ -35,7 +35,7 @@ abstract class Stateful<T extends StatefulWidget, P extends Presenter> extends S
   void toast(
     String msg, {
     int gravity = 1,
-    int duration = 1,
+    int duration = 2,
     Color backgroundColor = const Color(0xAA000000),
     Color textColor = Colors.white,
     double backgroundRadius = 20,
