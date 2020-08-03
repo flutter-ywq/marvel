@@ -16,9 +16,9 @@ Future launchAndCloseSelf(BuildContext context, Widget widget, {bool stack = fal
   return Navigator.pushAndRemoveUntil(context, _pageRoute(widget, stack), (_) => false);
 }
 
-bool finish(BuildContext context) {
+void finish(BuildContext context) {
   StatefulPage.routes.removeLast();
-  return Navigator.pop(context);
+  Navigator.pop(context);
 }
 
 Route _pageRoute(Widget widget, bool stack) {
