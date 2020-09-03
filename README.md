@@ -17,7 +17,7 @@ flutter mvp project framework
 - stateful - 继承自StatefulWidget的抽象类。规范了页面展示顺序，必要的方法过程，提供一些常用方法
 - model - 规范model层必需的方法
 - view - 规范view层必需的方法，如：toast(...)、showMsg(...) ...
-- presenter - 规范presenter层必需的方法
+- presenter - 规范presenter层必需的方法   
 
 ### utils - 常用工具类
 - encrypt - 加密相关
