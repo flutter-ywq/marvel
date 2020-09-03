@@ -64,6 +64,7 @@ Future<T> showMsg<T>(
   Function positivePressEvent,
   Function negativePressEvent,
   bool barrierDismissible = false,
+  bool backDismissible = true,
 }) {
   msg = msg ?? '';
   return MessageDialog.show<T>(
@@ -75,5 +76,6 @@ Future<T> showMsg<T>(
     positivePressEvent: positivePressEvent,
     negativePressEvent: negativePressEvent,
     barrierDismissible: barrierDismissible,
+    backDismissible: backDismissible,
   );
 }

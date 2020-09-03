@@ -36,20 +36,26 @@ class MessageDialog {
     Function positivePressEvent,
     Function negativePressEvent,
     Widget content,
+    bool backDismissible = true,
   }) {
     return showDialog<T>(
       context: context,
       barrierDismissible: barrierDismissible,
       builder: (context) {
-        return MessageDialog._(
-          title: title,
-          message: message,
-          positiveText: positiveText,
-          negativeText: negativeText,
-          positivePressEvent: positivePressEvent,
-          negativePressEvent: negativePressEvent,
-          content: content,
-        )._show<T>(context);
+        return WillPopScope(
+            child: MessageDialog._(
+              title: title,
+              message: message,
+              positiveText: positiveText,
+              negativeText: negativeText,
+              positivePressEvent: positivePressEvent,
+              negativePressEvent: negativePressEvent,
+              content: content,
+            )._show<T>(context),
+            onWillPop: (){
+              return Future.value(backDismissible);
+            }
+        );
       },
     );
   }
